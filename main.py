@@ -4,6 +4,7 @@ from selenium.webdriver.common.by import By
 from selenium.webdriver.common.keys import Keys
 from selenium.webdriver.support.ui import Select
 from selenium.common.exceptions import NoSuchElementException
+from openpyxl import load_workbook
 
 count = 0
 
@@ -16,64 +17,65 @@ try:
     # Ciclo para recorrer diferentes instalaciones y programas
     for selecFacility in selecFacilitys:
         for selectRadio_program in selectRadio_programs:
-            with open('fechaComentarios.txt') as file:
-                for i, line in enumerate(file):
-                    fecha = (line)
-                    dividir = fecha.split(";")
-                    try:
-                        gotdata = dividir[1]
-                        fechaData = dividir[0]
-                        comentarioData = dividir[1]
-                    except IndexError:
-                        gotdata = 'null'
 
-                    # Inicializar el controlador de Chrome
-                    driver = webdriver.Chrome()
-                    driver.get("https://katalon-demo-cura.herokuapp.com/")
+            fileExcel = "./fechaComentarios.xlsx"
+            wb = load_workbook(fileExcel)
+            #nombres = wb.get_sheet_by_name("Hoja1")
+            nombres = wb["Hoja1"]
+            wb.close()
 
-                    # Interacción con la página web
-                    BotonMake = driver.find_element(By.ID, "btn-make-appointment")
-                    BotonMake.send_keys(Keys.ENTER)
+            for i in range (1,3):
+                fechaExcel, comentarioExcel = nombres[f'A{i}:B{i}'][0]
+                fechaData = str(fechaExcel.value)
+                comentarioData = comentarioExcel.value
 
-                    loginUser = driver.find_element(By.ID, "txt-username")
-                    loginUser.send_keys("John Doe")
+                # Inicializar el controlador de Chrome
+                driver = webdriver.Chrome()
+                driver.get("https://katalon-demo-cura.herokuapp.com/")
 
-                    loginPass = driver.find_element(By.ID, "txt-password")
-                    loginPass.send_keys("ThisIsNotAPassword")
+                # Interacción con la página web
+                BotonMake = driver.find_element(By.ID, "btn-make-appointment")
+                BotonMake.send_keys(Keys.ENTER)
 
-                    loginBoton = driver.find_element(By.ID, "btn-login")
-                    loginBoton.send_keys(Keys.ENTER)
+                loginUser = driver.find_element(By.ID, "txt-username")
+                loginUser.send_keys("John Doe")
 
-                    facility = driver.find_element(By.ID, "combo_facility")
-                    selectFacility = Select(facility)
-                    selectFacility.select_by_value(selecFacility)
+                loginPass = driver.find_element(By.ID, "txt-password")
+                loginPass.send_keys("ThisIsNotAPassword")
 
-                    checkbox = driver.find_element(By.ID, "chk_hospotal_readmission")
-                    checkbox.click()
+                loginBoton = driver.find_element(By.ID, "btn-login")
+                loginBoton.send_keys(Keys.ENTER)
 
-                    radio_program = driver.find_element(By.ID, selectRadio_program)
-                    radio_program.click()
+                facility = driver.find_element(By.ID, "combo_facility")
+                selectFacility = Select(facility)
+                selectFacility.select_by_value(selecFacility)
 
-                    dateVisit = driver.find_element(By.ID, "txt_visit_date")
-                    dateVisit.send_keys(fechaData)
+                checkbox = driver.find_element(By.ID, "chk_hospotal_readmission")
+                checkbox.click()
 
-                    comentario = driver.find_element(By.ID, "txt_comment")
-                    comentario.send_keys(comentarioData)
+                radio_program = driver.find_element(By.ID, selectRadio_program)
+                radio_program.click()
 
-                    bookAppointment = driver.find_element(By.ID, "btn-book-appointment")
-                    bookAppointment.send_keys(Keys.ENTER)
+                dateVisit = driver.find_element(By.ID, "txt_visit_date")
+                dateVisit.send_keys(fechaData)
 
-                    confirmacion = driver.find_element(By.TAG_NAME, "h2")
-                    textoConfirmacion = confirmacion.text
-                    count+=1
+                comentario = driver.find_element(By.ID, "txt_comment")
+                comentario.send_keys(comentarioData)
 
-                    # Verificación de éxito o fallo de la prueba
-                    if textoConfirmacion == "Appointment Confirmation":
-                        print(f'La prueba #{count}, fue satisfactoria con el mensaje: {textoConfirmacion}')
-                    else:
-                        print(f'La prueba fallo')
-                    time.sleep(1)
-                    driver.quit()
+                bookAppointment = driver.find_element(By.ID, "btn-book-appointment")
+                bookAppointment.send_keys(Keys.ENTER)
+
+                confirmacion = driver.find_element(By.TAG_NAME, "h2")
+                textoConfirmacion = confirmacion.text
+                count += 1
+
+                # Verificación de éxito o fallo de la prueba
+                if textoConfirmacion == "Appointment Confirmation":
+                    print(f'La prueba #{count}, fue satisfactoria con el mensaje: {textoConfirmacion}')
+                else:
+                    print(f'La prueba fallo')
+                time.sleep(1)
+                driver.quit()
 
 except NoSuchElementException as e:
     print("Error: Elemento no encontrado -", e)
@@ -84,5 +86,4 @@ except Exception as e:
 finally:
     # Cierre del navegador y del archivo
     driver.quit()
-    file.close()
     print("--- Finalizando las pruebas con Python-Selenium ---")

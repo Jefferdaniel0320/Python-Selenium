@@ -1,0 +1,43 @@
+1697755576972	geckodriver	INFO	Listening on 127.0.0.1:58674
+1697755580001	mozrunner::runner	INFO	Running command: "C:\\Users\\JefferD\\.cache\\selenium\\firefox\\win64\\118.0.2\\firefox.exe" "--marionette" "--remote-debugg ...  "--remote-allow-hosts" "localhost" "-no-remote" "-profile" "C:\\Users\\JefferD\\AppData\\Local\\Temp\\rust_mozprofilewrGADp"
+console.warn: services.settings: Ignoring preference override of remote settings server
+console.warn: services.settings: Allow by setting MOZ_REMOTE_SETTINGS_DEVTOOLS=1 in the environment
+1697755581106	Marionette	INFO	Marionette enabled
+Dynamically enable window occlusion 0
+1697755581214	Marionette	INFO	Listening on port 58704
+WebDriver BiDi listening on ws://127.0.0.1:58675
+Read port: 58704
+1697755581487	RemoteAgent	WARN	TLS certificate errors will be ignored for this session
+DevTools listening on ws://127.0.0.1:58675/devtools/browser/65826e6e-8dab-4a3b-a2f7-868d8caf8a24
+1697755587037	Marionette	INFO	Stopped listening on port 58704
+Dynamically enable window occlusion 1
+console.error: (new AbortError("Actor 'LoginManager' destroyed before query 'PasswordManager:findLogins' was resolved", (void 0)))
+console.log: "RemoteSettingsWorker error: Error: Can't import when we've started shutting down."
+console.error: (new RemoteSettingsWorkerError("Error: Can't import when we've started shutting down.", "resource://services-settings/RemoteSettingsWorker.sys.mjs", 34))
+1697755775135	geckodriver	INFO	Listening on 127.0.0.1:58962
+1697755778219	mozrunner::runner	INFO	Running command: "C:\\Users\\JefferD\\.cache\\selenium\\firefox\\win64\\118.0.2\\firefox.exe" "--marionette" "--remote-debugg ...  "--remote-allow-hosts" "localhost" "-no-remote" "-profile" "C:\\Users\\JefferD\\AppData\\Local\\Temp\\rust_mozprofilenMbpR5"
+console.warn: services.settings: Ignoring preference override of remote settings server
+console.warn: services.settings: Allow by setting MOZ_REMOTE_SETTINGS_DEVTOOLS=1 in the environment
+1697755778667	Marionette	INFO	Marionette enabled
+Dynamically enable window occlusion 0
+1697755778795	Marionette	INFO	Listening on port 58972
+WebDriver BiDi listening on ws://127.0.0.1:58963
+Read port: 58972
+1697755779047	RemoteAgent	WARN	TLS certificate errors will be ignored for this session
+DevTools listening on ws://127.0.0.1:58963/devtools/browser/1378870f-a498-4c3f-8fd1-ce32acd7260f
+1697755782533	Marionette	INFO	Stopped listening on port 58972
+Dynamically enable window occlusion 1
+JavaScript error: resource://gre/actors/ContentMetaChild.sys.mjs, line 179: InvalidStateError: JSWindowActorChild.sendAsyncMessage: JSWindowActorChild cannot send at the moment
+1697757040374	geckodriver	INFO	Listening on 127.0.0.1:60460
+1697757043423	mozrunner::runner	INFO	Running command: "C:\\Users\\JefferD\\.cache\\selenium\\firefox\\win64\\118.0.2\\firefox.exe" "--marionette" "--remote-debugg ...  "--remote-allow-hosts" "localhost" "-no-remote" "-profile" "C:\\Users\\JefferD\\AppData\\Local\\Temp\\rust_mozprofileTiv75p"
+console.warn: services.settings: Ignoring preference override of remote settings server
+console.warn: services.settings: Allow by setting MOZ_REMOTE_SETTINGS_DEVTOOLS=1 in the environment
+1697757044022	Marionette	INFO	Marionette enabled
+Dynamically enable window occlusion 0
+1697757044141	Marionette	INFO	Listening on port 60474
+WebDriver BiDi listening on ws://127.0.0.1:60461
+Read port: 60474
+1697757044450	RemoteAgent	WARN	TLS certificate errors will be ignored for this session
+DevTools listening on ws://127.0.0.1:60461/devtools/browser/c5e79560-ede1-4de4-a712-5da419df7661
+1697757048460	Marionette	INFO	Stopped listening on port 60474
+Dynamically enable window occlusion 1
