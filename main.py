@@ -4,6 +4,7 @@ from selenium.webdriver.common.by import By
 from selenium.webdriver.common.keys import Keys
 from selenium.webdriver.support.ui import Select
 from selenium.common.exceptions import NoSuchElementException
+import csv
 
 count = 0
 
@@ -16,16 +17,19 @@ try:
     # Ciclo para recorrer diferentes instalaciones y programas
     for selecFacility in selecFacilitys:
         for selectRadio_program in selectRadio_programs:
-            with open('fechaComentarios.txt') as file:
-                for i, line in enumerate(file):
-                    fecha = (line)
-                    dividir = fecha.split(";")
+
+            # Abre el archivo CSV en modo lectura
+            with open('fechaComentarios.csv', newline='') as csvfile:
+                # Crea un objeto lector de CSV
+                csvreader = csv.reader(csvfile, delimiter=';')  # Especifica el delimitador adecuado
+
+                for i, row in enumerate(csvreader):
                     try:
-                        gotdata = dividir[1]
-                        fechaData = dividir[0]
-                        comentarioData = dividir[1]
+                        fechaData = row[0]
+                        comentarioData = row[1]
                     except IndexError:
-                        gotdata = 'null'
+                        fechaData = 'null'
+                        comentarioData = 'null'
 
                     # Inicializar el controlador de Chrome
                     driver = webdriver.Chrome()
@@ -84,5 +88,5 @@ except Exception as e:
 finally:
     # Cierre del navegador y del archivo
     driver.quit()
-    file.close()
+    csvfile.close()
     print("--- Finalizando las pruebas con Python-Selenium ---")
